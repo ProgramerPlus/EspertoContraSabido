@@ -1,52 +1,56 @@
-﻿using System.ComponentModel;
-
 Console.Clear();
-Console.WriteLine("--- Esperto contra sabido ---");
+Console.WriteLine("--- Esperto Contra Sabido ---\n");
 
-Console.WriteLine("Quantos alimentos serão distribuidos?");
-int alimento=Convert.ToInt32(Console.ReadLine()!);
+Console.Write("Quantos alimentos serão distribuídos? ");
+int total = Convert.ToInt32(Console.ReadLine()!);
 
-int n=0;
-int a =0;
-int s=0;
-int soma=0;
-int x=0;
-int l=0;
-int y=0;
-int t=0;
+// ➤ NÃO FAÇA NADA se o número for menor ou igual a zero
+if (total <= 0)
+    return;
 
-while(n<alimento){
+int recebidosPicaPau = 0;
+int recebidosRaposinha = 0;
 
-    n=n+1;
-    Console.Write($"{n} para você. ");
-y=n;
-if(l==1 && x==0 || alimento==n){n=alimento;break;}
+int rodada = 1;
 
-a=0;
-while(a<n){
-   a=a+1;
-   if(x==a || x==0 && l==1){n=alimento;break;}
-   Console.Write($"{a} ");
-   
+while (total > 0)
+{
+    // Quantidade que Pica-Pau receberia na rodada
+    int paraVoce = rodada;
+
+    if (paraVoce > total)
+        paraVoce = total; // pega só o que resta
+
+    total -= paraVoce;
+    recebidosPicaPau += paraVoce;
+
+    Console.Write($"{paraVoce} para você. ");
+
+    // Agora os itens da Raposinha
+    int paraMim = rodada;
+
+    if (paraMim > total)
+        paraMim = total;
+
+    if (paraMim > 0)
+    {
+        Console.Write("1");
+        recebidosRaposinha++;
+    }
+
+    for (int i = 2; i <= paraMim; i++)
+    {
+        Console.Write($", {i}");
+        recebidosRaposinha++;
+    }
+
+    Console.WriteLine(" para mim.");
+
+    total -= paraMim;
+
+    rodada++;
 }
 
-s=a+s;
-
-soma=n+s;   
-
-x = alimento-soma; 
-
-
-
-if(x<=n){l=1;}
-
-
- Console.Write($" para mim.\n");
-
-if(l==1 && x==0){n=alimento;break;}
-
-}
-
-
-Console.WriteLine($"Pica-pau recebeu {y} alimento(s).");
-Console.WriteLine($"Raposinha recebeu {s} alimento(s).");
+Console.WriteLine();
+Console.WriteLine($"Pica-pau recebeu {recebidosPicaPau} alimento(s).");
+Console.WriteLine($"Raposinha recebeu {recebidosRaposinha} alimento(s).");
