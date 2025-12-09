@@ -27,13 +27,14 @@ while(a<n){
    a=a+1;
    if(x==a || x==0 && l==1){n=alimento;break;}
    Console.Write($"{a} ");
-   
+   if(x==0 && l==1 && n==alimento){}else
+     Console.Write($" para mim.\n");}
 }
 
-if(n==alimento){
-break;
-}else{s=s+a;}
 
+s=s+a;
+
+t=alimento-y;
 
 soma=n+s;   
 
@@ -44,8 +45,6 @@ x = alimento-soma;
 if(x<=n){l=1;}
 
 
- Console.Write($" para mim.\n");
-
 if(l==1 && x==0){n=alimento;break;}
 
 }
@@ -54,4 +53,4 @@ if(l==1 && x==0){n=alimento;break;}
 
 
 Console.WriteLine($"\nPica-pau recebeu {y} alimento(s).");
-Console.WriteLine($"Raposinha recebeu {s} alimento(s).");
+Console.WriteLine($"Raposinha recebeu {t} alimento(s).");
